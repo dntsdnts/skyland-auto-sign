@@ -1,6 +1,6 @@
 # run main.py
 name: Auto Sign
-于:
+on:
   schedule:
     - cron: '0 18 * * *'
   workflow_dispatch:
