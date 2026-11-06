@@ -22,7 +22,7 @@ def config_logger():
     logger.addHandler(file_handler)
     logger.setLevel(logging.DEBUG)
     file_handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter('[%(levelname)s] %(message)s')
     file_handler.setFormatter(formatter)
 
     console_handler = logging.StreamHandler()
@@ -81,8 +81,8 @@ def config_logger():
 if __name__ == '__main__':
     config_logger()
 
-    print('本项目源代码仓库：https://github.com/xxyz30/skyland-auto-sign(因白嫖action被github封禁)')
-    print('https://gitee.com/FancyCabbage/skyland-auto-sign')
+    logging.debug('本项目源代码仓库：https://github.com/xxyz30/skyland-auto-sign(因白嫖action被github封禁)')
+    logging.debug('https://gitee.com/FancyCabbage/skyland-auto-sign')
     logging.info('=========starting==========')
     start_time = time.time()
     success, all_logs = start()
