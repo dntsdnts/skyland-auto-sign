@@ -206,8 +206,9 @@ def sign_for_arknights(data: dict):
     channel = data.get("channelName")
     nickname = data.get('nickName') or ''
     if resp.get('code') != 0:
-        return [
-            f'[{game_name}]角色{nickname}({channel})签到失败了！原因：{resp["message"]}']
+        logging.error(
+            f'[{game_name}]角色{nickname}({channel})签到失败了！原因：{resp["message"]}')
+        exit(resp['code'])
     result = ''
     awards = resp['data']['awards']
     for j in awards:
@@ -226,7 +227,9 @@ def sign_for_endfield(data: dict):
         resp = do_sign_for_endfield(i)
         j = resp.json()
         if j['code'] != 0:
-            result.append(f'[{game_name}]角色{nickname}({channel})签到失败了！原因:{j["message"]}')
+            logging.error(
+                f'[{game_name}]角色{nickname}({channel})签到失败了！原因:{j["message"]}')
+            exit(j['code'])
         else:
             awards_result = []
             result_data: dict = j['data']
